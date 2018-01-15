@@ -1,0 +1,1 @@
+a:3:{i:0;C:46:"Symfony\Component\Config\Resource\FileResource":43:{s:35:"/var/www/test_project/gru/index.php";}i:1;C:46:"Symfony\Component\Config\Resource\FileResource":100:{s:92:"/var/www/test_project/gru/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Kernel.php";}i:2;C:72:"Symfony\Component\DependencyInjection\Config\ContainerParametersResource":6:{a:0:{}}}
