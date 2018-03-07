@@ -1,0 +1,72 @@
+{% extends 'micro/random.html.twig' %}
+
+{% block intro %}
+    <div class="col-sm-12" style="margin-top: 85px; background: white;">
+        <div class="text-center">
+            <h1>
+                Отзывы о нас!
+            </h1>
+            <br>
+        </div>
+    </div>
+    <form>
+        {% for comment in comment %}
+        <div class="jumbotron1 top-space">
+            <div class="container">
+
+
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 highlight">
+                        <div class="h-caption"><h4><i class="fa fa-user fa-5"></i>
+                               <div style="font-size: 15px" >
+
+                                     {{ comment.name }}
+
+                               </div>
+                            </h4>
+
+                        </div>
+
+                    </div>
+                    <div class="col-md-9 col-md-12 col-sm-6 highlight">
+                        <div class="text-center">
+                        <p style="font-size: 20px; margin-top: 20px">
+
+                                {{ comment.comment }}
+
+                        </p>
+                        </div>
+                    </div>
+            </div>
+            </div>
+        </div>
+            {% endfor %}
+
+    </form>
+    <div class="text-center" style="font-size: 38px; font-weight: bold;"> <br>Оставьте Ваш отзыв!</div>
+    <div class="contact" style="margin-top: 30px">
+        <div class="text-center">
+            {{ form_start(form, { 'action': path('reviews'), 'method': 'POST'   }) }}
+            {{ form_errors(form) }}
+
+            <div class="comment-name">
+                {{ form_label(form.name, 'Введите Ваше имя:') }}
+                {{ form_errors(form.name) }}
+                {{ form_widget(form.name)}}
+
+
+
+
+                {{ form_label(form.comment, 'Прокомментируйте нашу работу:') }}
+                {{ form_errors(form.comment) }}
+                {{ form_widget(form.comment)}}
+            </div>
+            <div>
+                {{ form.submit.vars.submit }}
+                {{ form_row(form.submit, { 'label': 'Добавить комментарий' })}}
+            </div>
+            {{ form_rest(form) }}
+        <br>
+        </div>
+    </div>
+{% endblock %}

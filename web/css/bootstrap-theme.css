@@ -91,6 +91,14 @@
 	.jumbotron h2, .jumbotron h3, .jumbotron h4, 
 	.jumbotron h5, .jumbotron h6 { line-height: 1.3em; }
 
+/*******************************/
+/*           Jumbotron1         */
+/*******************************/
+.jumbotron1 { color: inherit; background-color: #f3f3f3; padding-top:3px; padding-bottom:3px; margin-bottom:0;	}
+.container1 .jumbotron1 { -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; padding-left:40px; padding-right:40px; }
+.jumbotron1 p { font-size:inherit; }
+.jumbotron1 h2, .jumbotron1 h3, .jumbotron1 h4,
+.jumbotron1 h5, .jumbotron1 h6 { line-height: 1.3em; }
 
 /*******************************/
 /*           Images            */

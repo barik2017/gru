@@ -96,9 +96,44 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
-        // app_micro_random
-        if (0 === strpos($pathinfo, '/random') && preg_match('#^/random/(?P<limit>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'app_micro_random')), array (  '_controller' => 'App\\Controller\\MicroController::randomAction',));
+        // home_page
+        if ('' === $trimmedPathinfo) {
+            $ret = array (  '_controller' => 'AppBundle\\Controller\\MicroController::randomAction',  '_route' => 'home_page',);
+            if (substr($pathinfo, -1) !== '/') {
+                return array_replace($ret, $this->redirect($rawPathinfo.'/', 'home_page'));
+            }
+
+            return $ret;
+        }
+
+        // about
+        if ('/about' === $pathinfo) {
+            return array (  '_controller' => 'AppBundle\\Controller\\MicroController::aboutAction',  '_route' => 'about',);
+        }
+
+        // all
+        if ('/all' === $pathinfo) {
+            return array (  '_controller' => 'AppBundle\\Controller\\MicroController::AllAction',  '_route' => 'all',);
+        }
+
+        // stevedores
+        if ('/stevedores' === $pathinfo) {
+            return array (  '_controller' => 'AppBundle\\Controller\\MicroController::stevedoresAction',  '_route' => 'stevedores',);
+        }
+
+        // trucking
+        if ('/trucking' === $pathinfo) {
+            return array (  '_controller' => 'AppBundle\\Controller\\MicroController::TruckingAction',  '_route' => 'trucking',);
+        }
+
+        // contact
+        if ('/contact' === $pathinfo) {
+            return array (  '_controller' => 'AppBundle\\Controller\\MicroController::ContactAction',  '_route' => 'contact',);
+        }
+
+        // reviews
+        if ('/reviews' === $pathinfo) {
+            return array (  '_controller' => 'AppBundle\\Controller\\MicroController::ReviewsAction',  '_route' => 'reviews',);
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();

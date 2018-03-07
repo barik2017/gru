@@ -7,8 +7,9 @@ use Symfony\Component\Routing\RouteCollectionBuilder;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 
 // require Composer's autoloader
-$loader = require __DIR__.'/../vendor/autoload.php';
 // auto-load annotations
+$loader = require __DIR__.'/../vendor/autoload.php';
+
 AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
 
 class AppKernel extends Kernel
@@ -20,7 +21,10 @@ class AppKernel extends Kernel
         $bundles = array(
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
-            new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle()
+            new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+            new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
+            new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
+            new AppBundle\AppBundle()
         );
 
         if ($this->getEnvironment() == 'dev') {
@@ -52,7 +56,7 @@ class AppKernel extends Kernel
         }
 
         // load the annotation routes
-        $routes->import(__DIR__.'/../src/App/Controller/', '/', 'annotation');
+        $routes->import(__DIR__.'/../src/AppBundle/Controller/', '/', 'annotation');
     }
 
     // optional, to use the standard Symfony cache directory
