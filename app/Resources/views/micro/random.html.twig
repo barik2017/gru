@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"    content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+
+    <title>{% block title %} Progressus - Free business bootstrap template by GetTemplate {% endblock %}</title>
+
+    <!--[if lt IE 9]>
+    <script src="{{ asset('js/html5shiv.js') }}"></script>
+    <script src="{{ asset('js/respond.min.js') }}"></script>
+    <![endif]-->
+{% block stylesheet %}
+    <link rel="shortcut icon" href="{{ asset('images/gt_favicon.png') }}"/>
+
+    <link rel="stylesheet" media="screen" href={{ asset("http://fonts.googleapis.com/css?family=Open+Sans:300,400,700")}}>
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css')}}"/>
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css')}}"/>
+    <link rel="stylesheet" href={{  asset("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")}}>
+
+    <!-- Custom styles for our template -->
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-theme.css')}}" />
+    <link rel="stylesheet" href="{{ asset('css/main.css')}}"/>
+    {% endblock %}
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+</head>
+
+<body>
+{% block navbar %}
+<div class="navbar navbar-inverse navbar-fixed-top headroom" >
+    <div class="container">
+        <div class="navbar-header">
+            <!-- Button for smallest screens -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+            <a class="navbar-brand" href="{{ path('home_page') }}"><img src= {{ asset('images/logo.png') }} ></a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav pull-right">
+                <li class="active"><a href="{{ path('home_page') }}">Главная страница</a></li>
+                <li><a href="{{ path('about') }}">О нас</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Наши услуги <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li class="active"><a href="{{ path('trucking') }}">Грузоперевозки</a></li>
+                        <li><a href="{{ path('stevedores') }}">Услуги грузчиков</a></li>
+                        <li><a href="{{ path('all') }}">Машина + грузчкики</a></li>
+
+                    </ul>
+                </li>
+                <li><a href="{{ path('contact') }}">Наши контакты</a></li>
+                <li><a href="{{ path('reviews') }}">Отзывы</a> </li>
+        <!--   <li class="text-success"> Our number <br> 09955588899 <br> 5559994465</li> -->
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</div>
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block intro %}
+{% endblock %}
+
+{% block HightLights %}
+{% endblock %}
+
+{% block container %}
+{% endblock %}
+
+
+{% block footer %}
+<footer id="footer" class="top-space">
+
+    <div class="footer2">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-6 widget">
+                    <div class="widget-body">
+                        <p class="simplenav">
+                            <a href="{{ path('home_page') }}">На главную страницу</a> |
+                            <a href="{{ path('about') }}">О нас</a> |
+                            <a href="{{ path('contact') }}">Контакты</a> |
+                            <a href="{{ path('all') }}">Наши услуги</a> |
+
+                        </p>
+                    </div>
+                </div>
+            </div> <!-- /row of widgets -->
+        </div>
+    </div>
+
+    <div class="footer1">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-3 widget">
+                    <h3 class="widget-title">Contact</h3>
+                    <div class="widget-body">
+                        <p><a href="tel:+1234567890"> (050) 987-8597 </a><br>
+                            <a href="tel:+1234567890"> (050) 987-8597 </a><br>
+                            <a href="tel:+1234567890"> (050) 987-8597 </a><br>
+                            <br>
+                            <a href="mailto:#">some.email@somewhere.com</a><br>
+                            <br>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-9 widget">
+                    <h3 class="widget-title">Text widget</h3>
+                    <div class="widget-body">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, dolores, quibusdam architecto voluptatem amet fugiat nesciunt placeat provident cumque accusamus itaque voluptate modi quidem dolore optio velit hic iusto vero praesentium repellat commodi ad id expedita cupiditate repellendus possimus unde?</p>
+                        <p>Eius consequatur nihil quibusdam! Laborum, rerum, quis, inventore ipsa autem repellat provident assumenda labore soluta minima alias temporibus facere distinctio quas adipisci nam sunt explicabo officia tenetur at ea quos doloribus dolorum voluptate reprehenderit architecto sint libero illo et hic.</p>
+                    </div>
+                </div>
+            </div> <!-- /row of widgets -->
+        </div>
+    </div>
+</footer>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js') }}"></script>
+    <script src="{{ asset('http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/headroom.min.js') }}"></script>
+    <script src="{{ asset('js/jQuery.headroom.min.js') }}"></script>
+    <script src="{{ asset('js/template.js') }}"></script>
+{% endblock %}
+
+</body>
+</html>

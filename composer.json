@@ -1,0 +1,18 @@
+{
+    "require": {
+        "symfony/symfony": "^3.4",
+        "sensio/framework-extra-bundle": "^5.1",
+        "doctrine/doctrine-bundle": "^1.8",
+        "swiftmailer/swiftmailer": "^6.0",
+        "doctrine/orm": "^2.5",
+        "doctrine/doctrine-migrations-bundle": "^1.3",
+        "monolog/monolog": "dev-master",
+        "symfony/swiftmailer-bundle": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "": "src/"
+        },
+        "classmap": [ "app/AppKernel.php" ]
+    }
+}
