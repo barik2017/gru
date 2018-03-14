@@ -1,20 +1,60 @@
 <?php
 
-
 namespace AppBundle\Entity;
 
+use Symfony\Component\Validator\Mapping\ClassMetadata;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class Enquiry
 {
+//    public static function loadValidatorMetadata(ClassMetadata $metadata)
+//    {
+//        $metadata->addPropertyConstraint('name', new NotBlank(array(
+//
+//        )));
+//
+//        $metadata->addPropertyConstraint('name', new Length(array(
+//            'min' => 2,
+//            'minMessage' => "Ваше имя должно состоять из {{ limit }} и более символов",
+//        )));
+//        /*$metadata->addPropertyConstraint('phone', new Number(array(
+//            'message' => 'symblog does not like invalid emails. Give me a real one!'
+//        )));*/
+//        $metadata->addPropertyConstraint('phone',  new Length(array(
+//            'min' => 6,
+//        )));
+//
+//    }
+
+    /**
+     * @var $name
+     *
+     * @Assert\NotBlank(
+     *     message = "Заполните поле"
+     * )
+     * @Assert\Length(
+     *     min = 2,
+     *     minMessage = "Ваше имя должно состоять из {{ limit }}-х и более символов"
+     * )
+     */
     protected $name;
 
-
+    /**
+     * @var $phone
+     *
+     * @Assert\NotBlank(
+     *     message = "Запfvdfvdолните поле"
+     * )
+     */
     protected $phone;
 
     protected $body;
 
     /**
      * @return mixed
+     *
      */
     public function getName()
     {
@@ -42,7 +82,7 @@ class Enquiry
      */
     public function setPhone($phone)
     {
-        $this->subject = $phone;
+        $this->phone = $phone;
     }
 
     /**

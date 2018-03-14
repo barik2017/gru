@@ -1,72 +1,76 @@
 {% extends 'micro/random.html.twig' %}
 
 {% block intro %}
-    <div class="col-sm-12" style="margin-top: 85px; background: white;">
-        <div class="text-center">
-            <h1>
-                Отзывы о нас!
-            </h1>
-            <br>
+    <div class="container">
+
+        <div class="row">
+            <div class="text-center">
+            <div class="col-sm-12" style="margin-top: 100px">
+                <h2>Оценка работы компании</h2><br>
+            </div>
+            </div>
         </div>
-    </div>
-    <form>
-        {% for comment in comment %}
-        <div class="jumbotron1 top-space">
-            <div class="container">
 
+        <div class="row">
 
-                <div class="row">
-                    <div class="col-md-3 col-sm-6 highlight">
-                        <div class="h-caption"><h4><i class="fa fa-user fa-5"></i>
-                               <div style="font-size: 15px" >
+            <div class="col-sm-7">
+                <table class="table">
+                    {% for comment in comment %}
+                    <tr>
+                        <td>
+                            <div class="col-xs-2">
+                            <div class="thumbnail">
+                                    <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+                                </div><!-- /thumbnail -->
+                            </div><!-- /col-sm-2 -->
 
-                                     {{ comment.name }}
+                            <div class="col-xs-10">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <strong>{{  comment.name }}</strong>
+                                    </div>
+                                    <div class="panel-body">
+                                        {{ comment.comment }}
+                                    </div><!-- /panel-body -->
+                                </div><!-- /panel panel-default -->
+                            </div><!-- /col-sm-5 -->
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
 
-                               </div>
-                            </h4>
-
-                        </div>
-
-                    </div>
-                    <div class="col-md-9 col-md-12 col-sm-6 highlight">
+            <div class="col-sm-5">
+                <div class="widget-area no-padding blank">
+                    <div class="status-upload">
                         <div class="text-center">
-                        <p style="font-size: 20px; margin-top: 20px">
+                            <h2 style="background-color: #f7f7f7">Оставьте Ваш отзыв</h2>
+                            <br>
 
-                                {{ comment.comment }}
+                                {{ form_start(form, { 'action': path('reviews'), 'method': 'POST'   }) }}
+                                {{ form_errors(form) }}
 
-                        </p>
+                                <div class="form">
+                                    {{ form_label(form.name, 'Введите Ваше имя:') }}
+                                    {{ form_errors(form.name) }}
+                                    {{ form_widget(form.name)}}
+
+                                    {{ form_label(form.comment, 'Прокомментируйте нашу работу:') }}
+                                    {{ form_errors(form.comment) }}
+                                    {{ form_widget(form.comment)}}
+                                </div>
+
+                                {{ form.submit.vars.submit }}
+                                {{ form_row(form.submit, { 'label': 'Добавить комментарий' })}}
+
+                                 {{ form_rest(form) }}
+                                <br>
                         </div>
                     </div>
+                </div>
             </div>
-            </div>
-        </div>
-            {% endfor %}
-
-    </form>
-    <div class="text-center" style="font-size: 38px; font-weight: bold;"> <br>Оставьте Ваш отзыв!</div>
-    <div class="contact" style="margin-top: 30px">
-        <div class="text-center">
-            {{ form_start(form, { 'action': path('reviews'), 'method': 'POST'   }) }}
-            {{ form_errors(form) }}
-
-            <div class="comment-name">
-                {{ form_label(form.name, 'Введите Ваше имя:') }}
-                {{ form_errors(form.name) }}
-                {{ form_widget(form.name)}}
-
-
-
-
-                {{ form_label(form.comment, 'Прокомментируйте нашу работу:') }}
-                {{ form_errors(form.comment) }}
-                {{ form_widget(form.comment)}}
-            </div>
-            <div>
-                {{ form.submit.vars.submit }}
-                {{ form_row(form.submit, { 'label': 'Добавить комментарий' })}}
-            </div>
-            {{ form_rest(form) }}
-        <br>
         </div>
     </div>
+
+    <!-- /container -->
 {% endblock %}

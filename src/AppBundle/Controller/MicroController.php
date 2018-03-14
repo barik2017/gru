@@ -12,6 +12,7 @@ use AppBundle\Entity\Enquiry;
 use AppBundle\Form\EnquiryType;
 use Symfony\Component\HttpFoundation\Response;
 
+
 class MicroController extends Controller
 {
     /**
@@ -76,27 +77,31 @@ class MicroController extends Controller
         if ($request->isMethod($request::METHOD_POST))
         {
             $form->handleRequest($request);
+                if ($form->isValid()) {
 
-            $message = (new \Swift_Message('Hello Email'))
-                ->setFrom($this->getParameter('mailer_user'))
-                ->setTo($this->getParameter('mailer_user'))
-                ->setBody(
-                    $this->renderView(
-                        'micro/contactEmail.txt.twig',
-                        array('enquiry' => $enquiry)),
-                'text/html'
-                );
-            $mailer->send($message);
+                    $message = (new \Swift_Message('Hello Email'))
+                        ->setFrom($this->getParameter('mailer_user'))
+                        ->setTo($this->getParameter('mailer_user'))
+                        ->setBody(
+                            $this->renderView(
+                                'micro/contactEmail.txt.twig',
+                                array('enquiry' => $enquiry)),
+                            'text/html'
+                        );
+                    $mailer->send($message);
 
-            if($mailer->send($message)){
-                return $this->redirect('contact');
+                    $this->addFlash(
+                        'notice',
+                        'Спасибо! Ваша заявка принята, мы свяжеся с Вами в течении 5 минут!'
+                    );
+                    return $this->redirectToRoute('contact');
 
             }
 
         }
 
         return $this->render('micro/contact.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ));
     }
 
@@ -110,11 +115,15 @@ class MicroController extends Controller
         $comment = $this->getDoctrine()
             ->getRepository(Comment::class)
             ->findAll();
-        // var_dump($comment);die;
+
+        //$firstElArr = array_shift($comment);
+
+
+
+
+
         $enquiry = new Comment();
         $form = $this->CreateForm(CommentType::class, $enquiry);
-
-        $cloned = clone $form;
 
         $form->handleRequest($request);
 
@@ -132,7 +141,9 @@ class MicroController extends Controller
 
         return $this->render('micro/reviews.html.twig', array(
                 'comment' => $comment,
-                 'form' => $form->createView())
+         //       'firstComment' => $firstElArr,
+                'form' => $form->createView())
+
         );
     }
 
