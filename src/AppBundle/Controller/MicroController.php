@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Enquiry;
 use AppBundle\Form\EnquiryType;
 use Symfony\Component\HttpFoundation\Response;
+use Pagerfanta\Adapter\ArrayAdapter;
+use Pagerfanta\Pagerfanta;
 
 
 class MicroController extends Controller
@@ -51,15 +53,6 @@ class MicroController extends Controller
     }
 
     /**
-     * @Route("/all", name = "all")
-     */
-
-    public function AllAction()
-    {
-        return $this->render('micro/all.html.twig');
-    }
-
-    /**
      * @Route("/contact", name = "contact")
      **
      * @param Request $request
@@ -72,7 +65,6 @@ class MicroController extends Controller
         $mailer = $this->get('mailer');
         $enquiry = new Enquiry();
         $form = $this->CreateForm(EnquiryType::class, $enquiry);
-        //$form-> add('submit', SubmitType::class);
 
         if ($request->isMethod($request::METHOD_POST))
         {
@@ -112,12 +104,10 @@ class MicroController extends Controller
 
     public function ReviewsAction(Request $request)
     {
-        $comment = $this->getDoctrine()
-            ->getRepository(Comment::class)
-            ->findAll();
-
-        //$firstElArr = array_shift($comment);
-
+        $em = $this->container->get('doctrine')->getEntityManager();
+        $pagerfanta = new Pagerfanta(new ArrayAdapter($em->getRepository('AppBundle:Comment')->findAll()));
+        $pagerfanta -> setMaxPerPage(5);
+        $pagerfanta->setCurrentPage($request->get('page',1));
 
 
 
@@ -140,7 +130,7 @@ class MicroController extends Controller
         }
 
         return $this->render('micro/reviews.html.twig', array(
-                'comment' => $comment,
+                'comments' => $pagerfanta,
          //       'firstComment' => $firstElArr,
                 'form' => $form->createView())
 

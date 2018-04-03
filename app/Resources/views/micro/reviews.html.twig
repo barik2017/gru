@@ -15,7 +15,7 @@
 
             <div class="col-sm-7">
                 <table class="table">
-                    {% for comment in comment %}
+                    {% for comment in comments %}
                     <tr>
                         <td>
                             <div class="col-xs-2">
@@ -37,6 +37,8 @@
                         </td>
                     </tr>
                     {% endfor %}
+
+
                 </table>
             </div>
 
@@ -69,6 +71,9 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="pagerfanta">
+            {{ pagerfanta(comments, 'twitter_bootstrap3') }}
         </div>
     </div>
 
