@@ -17,6 +17,8 @@ use Pagerfanta\Pagerfanta;
 
 class MicroController extends Controller
 {
+
+
     /**
      * @Route("/", name = "home_page")
      */
@@ -105,7 +107,7 @@ class MicroController extends Controller
     public function ReviewsAction(Request $request)
     {
         $em = $this->container->get('doctrine')->getEntityManager();
-        $pagerfanta = new Pagerfanta(new ArrayAdapter($em->getRepository('AppBundle:Comment')->findAll()));
+        $pagerfanta = new Pagerfanta(new ArrayAdapter(array_reverse($em->getRepository('AppBundle:Comment')->findAll())));
         $pagerfanta -> setMaxPerPage(5);
         $pagerfanta->setCurrentPage($request->get('page',1));
 

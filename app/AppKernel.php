@@ -25,7 +25,8 @@ class AppKernel extends Kernel
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new AppBundle\AppBundle(),
-            new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle()
+            new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle()/*,
+            new FOS\UserBundle\FOSUserBundle()*/
         );
 
         if ($this->getEnvironment() == 'dev') {

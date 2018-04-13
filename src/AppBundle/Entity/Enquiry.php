@@ -6,8 +6,13 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints as Assert;
+use FOS\UserBundle\Model\User as BaseUser;
+use Doctrine\ORM\Mapping as ORM;
 
-class Enquiry
+
+
+
+class Enquiry/* extends BaseUser*/
 {
 //    public static function loadValidatorMetadata(ClassMetadata $metadata)
 //    {
@@ -45,7 +50,7 @@ class Enquiry
      * @var $phone
      *
      * @Assert\NotBlank(
-     *     message = "Запfvdfvdолните поле"
+     *     message = "Заполните поле"
      * )
      */
     protected $phone;
